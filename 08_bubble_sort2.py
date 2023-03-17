@@ -5,6 +5,7 @@
   for MENOR que o primeiro. Efetua tantas passadas quanto
   necessárias, até que, na última passada, nenhuma troca
   seja efetuada
+  VERÇÃO OTIMIZADA
 """
 
 # Variáveis de estatística
@@ -13,6 +14,7 @@ comps = trocas = passadas = 0
 def bubble_sort(lista):
     global comps, trocas, passadas
     comps = trocas = passadas = 0
+    desloc = 1
     
     # Loop eterno, não sabemos quantas passadas serão
     # necessárias
@@ -22,7 +24,7 @@ def bubble_sort(lista):
 
         # Percurso da lista, do primeiro ao PENÚLTIMO
         # elemento, com acesso a cada posição
-        for pos in range(len(lista) - 1):
+        for pos in range(len(lista) - desloc):
             
             comps += 1
             
@@ -32,9 +34,12 @@ def bubble_sort(lista):
                 lista[pos + 1], lista[pos] = lista[pos], lista[pos + 1]
                 trocou = True
                 trocas += 1
+                
 
         if not trocou:  # Não houve troca na passada
             break       # Interrompe o loop eterno; acabou
+
+        desloc += 1
 #############################################################################
 
 nums = [6, 4, 2, 0, 9, 5, 1, 8, 3, 7, 33, 44, 11, 10, 54, 65, 30, 33, 12, 14, 20]
@@ -63,7 +68,7 @@ sys.dont_write_bytecode = True
 
 from data.nomes_desord import nomes
 
-nomes = nomes[:30000]
+nomes = nomes[:10000]
 
 horaini = time()
 bubble_sort(nomes)
