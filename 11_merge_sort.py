@@ -62,7 +62,7 @@ def merge_sort(lista):
 
 # Teste com vetor de 10 numeros
 
-nums = [6, 4, 2, 0, 9, 5, 1, 8, 3, 7]
+nums = [0, 2, 4, 6, 8, 1, 3, 5, 7, 9]
 
 #Resta as variaveis de estatistica
 divs = juncs = comps = 0
@@ -71,3 +71,25 @@ print("Lista original: ", nums)
 print("Lista ordenada: ", resultado)
 print(f"Divisões: {divs}, junções: {juncs}, comparações: {comps}")
 
+############################################################################
+
+from time import time
+import sys
+import tracemalloc
+sys.dont_write_bytecode = True
+
+from data.nomes_desord import nomes
+
+nomes = nomes[:10000]
+tracemalloc.start()
+horaini = time()
+divs = juncs = comps = 0
+resultado = merge_sort(nomes)
+horafim = time()    
+
+men_atual, mem_pico = tracemalloc.get_traced_memory()
+
+print("Nomes ordenados: ", resultado)
+print(f"Tempo gasto: {(horafim - horaini) * 1000}ms")
+print(f"Pico de memoria: {mem_pico / 1024 / 1024} MB")
+print(f"Divisões: {divs}, junções: {juncs}, comparações: {comps}")

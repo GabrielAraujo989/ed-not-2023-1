@@ -36,16 +36,20 @@ print(f"Comparações: {comps}, Trocas: {trocas}, passadas: {passadas}")
 
 from time import time
 import sys
+import tracemalloc
 sys.dont_write_bytecode = True
 
 from data.nomes_desord import nomes
 
 nomes = nomes[:10000]
-
+tracemalloc.start()
 horaini = time()
 selection_sort(nomes)
 horafim = time()
 
+men_atual, mem_pico = tracemalloc.get_traced_memory()
+
 print("Nomes ordenados: ", nomes)
 print(f"Tempo gasto: {(horafim - horaini) * 1000}ms")
+print(f"Pico de memoria: {mem_pico / 1024 / 1024} MB")
 print(f"Comparações: {comps}, trocas: {trocas}, passadas: {passadas}")
