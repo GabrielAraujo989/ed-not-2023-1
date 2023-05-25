@@ -4,15 +4,20 @@
     a frente, assim como da frente para trás.
     Para isso, usaremos uma estrutura de pilha baseada em uma
     lista do Python.
+
+    IMPLEMENTAÇÃO USANDO A CLASSE Stack
 """
+
+from lib.stack import Stack
 
 palavra = input("Informe a palavra a ser verificada:")
 
-pilha = []      # Lista vazia que será usada como pilha
+# pilha = []      # Lista vazia que será usada como pilha
+pilha = Stack()
 
 # 1) Pega cada letra da palavra e insere no fiinal (topo) da pilha
 for letra in palavra:
-    pilha.append(letra)
+    pilha.push(letra)
     print(pilha)
 
 print("*" * 50)
@@ -22,7 +27,7 @@ inverso = ""
 # 2) Vamos retirar as letras da pilha, uma a uma, DO FIM PARA O INÍCIO.
 # A operação se repete enquanto a pilha não estiver vazia.
 # Cada letra retirada é acrescentada à variável inverso.
-while len(pilha) > 0:
+while not pilha.is_empty():
     letra = pilha.pop()     # Retira o último elemento da pilha
     inverso += letra        # Acrescenta a letra ao inverso
     print(f"Pilha: {pilha}; inverso: {inverso}")
